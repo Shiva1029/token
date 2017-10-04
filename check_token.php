@@ -10,9 +10,12 @@ $config = new Zend\Config\Config(include 'config/config.php');
 
 $secretKey = base64_decode($config->get('jwtKey'));
 
-$token = JWT::decode($jwt, $secretKey, array('HS512'));
-
-print_r($token);
+try {
+    $token = JWT::decode($jwt, $secretKey, array('HS512'));
+    print_r($token);
+} catch (\Firebase\JWT\ExpiredException $e) {
+  echo 'Caught exception: ', $e->getMessage(), "\n";
+}
 
 /*
 $request = new Request();
