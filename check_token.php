@@ -15,6 +15,8 @@ try {
     print_r($token);
 } catch (\Firebase\JWT\ExpiredException $e) {
   echo 'Caught exception: ', $e->getMessage(), "\n";
+} catch (UnexpectedValueException $e) {
+  echo 'Caught exception: ', $e->getMessage(), "\n";
 }
 
 /*
